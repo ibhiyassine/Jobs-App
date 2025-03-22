@@ -13,6 +13,7 @@ export default {
             lower_bound: '',
             higher_bound: '',
             deletable: false,
+            editable: false,
         }
     },
     computed: {
@@ -62,13 +63,16 @@ export default {
                         this.$emit('delete', id)
                     }
                 })
-        }
+        },
+        edit(id){
+            this.$router.replace("/edit/"+id);
+        }   
     }
 }
 </script>
 
 <template>
-    <Navbar @delete="deletable = !deletable"/>
+    <Navbar @edit="editable = !editable" @delete="deletable = !deletable"/>
     <div class="d-flex p-2 flex-row">
         <Filters
             @search="(input) => (search_name = input)"
@@ -78,7 +82,7 @@ export default {
             style="width: 25%"
         />
         <div class="d-flex p-2 flex-wrap" style="width: 75%">
-            <Task v-for="element of filtered" :key="element.id" v-bind="element" :is-deletable="deletable" class="m-1" @remove="(id) => {remove(id)}"/>
+            <Task v-for="element of filtered" :key="element.id" v-bind="element" :is-deletable="deletable" class="m-1" @remove="(id) => {remove(id)}" @edit="(id) => {edit(id)}" :editable="editable"/>
         </div>
     </div>
 </template>

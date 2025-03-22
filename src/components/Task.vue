@@ -7,6 +7,7 @@ export default {
         salaire: Number,
         date_de_creation: String,
         isDeletable: Boolean,
+        editable: Boolean,
     },
     methods: {
         moredetails() {
@@ -50,7 +51,8 @@ export default {
                     {{ date_de_creation }}
                 </p>
                 <p class="card-text flex-fill">{{ show_desc }}</p>
-                <div>
+                <div class="d-flex justify-content-end gap-3 align-items-center">
+                    <img @click="$emit('edit', id)" src="../assets/editing.png" style="width: 20px; height: 20px;" v-show="editable">
                     <button class="btn btn-info" @click="moredetails()">{{ info }}</button>
                 </div>
             </div>

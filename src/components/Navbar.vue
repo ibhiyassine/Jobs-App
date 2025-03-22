@@ -26,6 +26,9 @@ export default{}
                         <RouterLink class="nav-link" to="/add" replace="true">Add task</RouterLink>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="" @click.prevent="$emit('edit')">Edit Task</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="" @click.prevent="$emit('delete')">Delete Task</a>
                     </li>
                     
